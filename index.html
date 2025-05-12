@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Post Message 3</title>
+</head>
+<body>
+<h1>Hello World!</h1>
+<script>
+	window.onload = function () {
+		// Generate a random token
+		const token = Math.random().toString(36).substr(1,16);
+
+		// Send the token to the parent
+		window.parent.postMessage({
+			token: token
+		},"*");
+
+		// Listen for a message from the parent
+		window.addEventListener("message", function(event){
+			// Make sure the message contains the expected data structure
+			if (event.data && event.data.token === token && event.data.url) {
+				// Redirect to the URL provided in the message
+				window.location.href = event.data.url;
+			}
+		});
+	};
+</script>
+</body>
+</html>
